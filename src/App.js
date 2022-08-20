@@ -2,8 +2,10 @@ import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import { NavBar, Cart, ProductList , Home } from './components';
 import { navLinkStyle } from './theme'
 import './App.css'
+import useCart from './logic/useCart'
 
 function App() {
+  const cart = useCart([])
   return (
     <BrowserRouter>
       <NavBar>
@@ -13,8 +15,8 @@ function App() {
       </NavBar>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/products" element={<ProductList />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/products" element={<ProductList cart={cart} />} />
+        <Route path="/cart" element={<Cart cart={cart} />} />
       </Routes>
     </BrowserRouter>
   );

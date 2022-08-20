@@ -1,0 +1,18 @@
+#cart .table {
+    display: grid;
+    grid-template-columns: repeat(5, 150px);
+}
+
+#cart .table {
+    font-size: 20px;
+}
+
+#cart .table .title{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#cart .table .edit {
+    display: flex;
+    gap: 15px;
+}

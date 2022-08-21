@@ -15,7 +15,7 @@ function ProductList({cart}) {
         <Product 
           key={product.id} 
           product={product} 
-          addToCart={cart.addItem(product)}
+          addToCart={() => cart.add(product)}
           />
         )}
     </div>

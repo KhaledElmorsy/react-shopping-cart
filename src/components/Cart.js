@@ -16,10 +16,10 @@ function Cart({cart}) {
           <div>{row.item.price}</div>
           <div>{row.quantity}</div>
           <div className="edit">
-            <div onClick={cart.addItem(row.item)}>+</div>
-            <div onClick={cart.removeItem(row.item)}>-</div>
+            <div onClick={() => cart.stepQuantity(row, 1)}>+</div>
+            <div onClick={() => cart.stepQuantity(row, -1)}>-</div>
             {row.item.quantity === 1 ? <div className="disabled">-</div> : 
-             <div onClick={cart.deleteItem(row.item)}>x</div> }
+             <div onClick={() => cart.remove(row)}>x</div> }
           </div>
           <div>{row.item.price * row.quantity}</div>
         </ React.Fragment>

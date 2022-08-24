@@ -1,6 +1,4 @@
-import pubsub from './utility/pubsub'
-
-const { subscribe, unsubscribe, publish } = pubsub
+import { subscribe, unsubscribe, publish } from './pubsub'
 
 it('creates subscriptions to events and calls callbacks when published', () => {
   let callback = jest.fn();

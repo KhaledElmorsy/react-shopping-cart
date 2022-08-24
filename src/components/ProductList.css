@@ -1,8 +1,20 @@
-.product-list {
-    display: grid;
-    grid-template-columns: repeat(3, auto);
-    margin: auto;
-    place-items: center;
-    gap: 20px;
+#product-list{
+    height: 100%;
+    display: flex;
+    align-items: start;
+}
+
+#grid-container{
+    padding: 30px;
+    width: max(700px, 80%);
+    display: flex;
     justify-content: center;
+    margin-left: auto;
+}
+
+#products {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
 }

@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import { NavBar, Cart, ProductList , Home } from './components';
 import { navLinkStyle } from './theme'
 import './App.css'
-import useCart from './logic/useCart'
+import useCart from './utility/useCart'
 
 function App() {
   const cart = useCart([])

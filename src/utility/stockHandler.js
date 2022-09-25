@@ -1,4 +1,3 @@
-import { subscribe, publish } from './pubsub';
 import controller from '../model/controller';
 
 export async function checkStockChange({ id, increment}) {

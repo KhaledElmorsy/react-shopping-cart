@@ -1,8 +1,8 @@
 import data from './data'
+
 const controller = function(model) {
 
   const clone = (object) => JSON.parse(JSON.stringify(object))
-
   async function getAll() {
     return clone(model);
   }

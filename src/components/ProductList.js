@@ -1,15 +1,26 @@
 import { useEffect, useState } from 'react';
 import './ProductList.css';
-import items from '../model/data';
 import Product from './Product';
 import SideCart from './SideCart';
+import controller from '../model/controller';
+import { subscribe, publish, unsubscribe } from '../utility/pubsub';
 
 function ProductList({ cart }) {
   const [products, setProducts] = useState([]);
+  const [update, setUpdate] = useState(false);
+
   useEffect(() => {
-    setProducts(items);
+    let stockTracker = subscribe('CHANGE STOCK: COMPLETE', () => {
+      setUpdate(prev => !prev)
+    });
+    return () => unsubscribe(stockTracker);
   }, []);
 
+  useEffect(() => {
+    (async () => {
+      setProducts(await controller.getAll());
+    })();
+  }, [update]);
   return (
     <div id="product-list">
       <div id="grid-container">
@@ -18,12 +29,13 @@ function ProductList({ cart }) {
             <Product
               key={product.id}
               product={product}
-              addToCart={() => cart.add(product)}
+              addToCart={() =>
+                publish('ROUTINE: ADD TO CART', { id: product.id, increment: 1 })
+              }
             />
           ))}
         </div>
       </div>
-      <SideCart style={{ width: '400px' }} cart={cart} />
     </div>
   );
 }

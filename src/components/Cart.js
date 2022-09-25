@@ -1,27 +1,47 @@
 import React from 'react'
+import controller from '../model/controller'
+import { useState, useEffect } from 'react'
 import './Cart.css'
 
 function Cart({cart}) {
+  const [cartItems, setCartItems] = useState([])
+  
+  useEffect(()=>{
+    (async()=>{
+      const relevantItems = await controller.getFiltered((data) => 
+        cart.map(row => row.id).includes(data.id)
+      )
+      setCartItems(cart.map(row => {
+        const item = relevantItems.find(item => item.id === row.id)
+        return {
+          id: row.id,
+          quantity: row.quantity,
+          name: item.name,
+          price: item.price
+        }
+      }))
+    })()
+  }, [cart])
   return (
   <div id="cart">
     <div className="table">
       <div className="title">Item</div>
-      <div className="title">Price</div>
-      <div className="title">Quantity</div>
-      <div className="title">Edit</div>
-      <div className="title">Total</div>
-      {cart.rows.map((row, i) => (
+      <div className="price">Price</div>
+      <div className="quantity">Quantity</div>
+      <div className="edit">Edit</div>
+      <div className="total">Total</div>
+      {cartItems.map((item, i) => (
         <React.Fragment key={i}>
-          <div>{row.item.name}</div>
-          <div>{row.item.price}</div>
-          <div>{row.quantity}</div>
+          <div>{item.name}</div>
+          <div>{item.price}</div>
+          <div>{item.quantity}</div>
           <div className="edit">
-            <div onClick={() => cart.stepQuantity(row, 1)}>+</div>
-            <div onClick={() => cart.stepQuantity(row, -1)}>-</div>
-            {row.item.quantity === 1 ? <div className="disabled">-</div> : 
-             <div onClick={() => cart.remove(row)}>x</div> }
+            <div onClick={true}>+</div>
+            <div onClick={true}>-</div>
+            {false ? <div className="disabled">-</div> : 
+             <div onClick={true}>x</div> }
           </div>
-          <div>{row.item.price * row.quantity}</div>
+          <div>{}</div>
         </ React.Fragment>
         ))
       }

@@ -7,7 +7,7 @@ export function subscribe(event, callback) {
 }
 
 export function unsubscribe(token) {
-  events[token.event][token.id] = undefined;
+  delete events[token.event][token.id];
 }
 
 export function publish(event, ...payload) {

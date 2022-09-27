@@ -1,3 +1,4 @@
+import { isCompositeComponent } from 'react-dom/test-utils';
 import controller from '../model/controller';
 
 export async function checkStockChange({ id, increment}) {

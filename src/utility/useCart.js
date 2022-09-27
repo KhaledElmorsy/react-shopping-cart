@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 /**
  * 
@@ -6,21 +6,15 @@ import { useState } from 'react';
  */
 function useCart(initialCart) {
   const [cart, setCart] = useState(() => initialCart);
+  const cartRef = useRef()
+  cartRef.current = cart
+  
   /**
    * Add an ID to the cart
    * @param {string} id The cart item's ID
    */
   const add = (id)  => {
-    let step;
-    setCart(prevCart => {
-      if (prevCart.find(row => row.id === id)) {
-        step = true;
-        return prevCart;
-      } else {
-       return prevCart.concat([{id, quantity: 1}]);
-      }
-    })
-    if (step) stepQuantity(id, 1)
+      setCart(prevCart => prevCart.concat([{id, quantity: 1}]));
   };
 
   /**
@@ -51,7 +45,7 @@ function useCart(initialCart) {
    * @param {string} id Item ID
    * @param {number} increment Value to increment quantity by. Can be negative.
    */
-  const stepQuantity = (id, increment) => {
+  const stepQuantity = ({id, increment}) => {
     edit((row => row.id === id), (row) => ({
       ...row,
       quantity: (row.quantity + increment) || 1,
@@ -75,7 +69,7 @@ function useCart(initialCart) {
    * @returns {Object}
    */
   const getItems = (filter) => {
-    return JSON.parse(JSON.stringify(cart.filter(filter ?? (_=>1))))
+    return JSON.parse(JSON.stringify(cartRef.current.filter(filter ?? (_=>1))))
   }
 
   /** Reset the cart to an empty array */

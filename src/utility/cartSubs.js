@@ -7,8 +7,8 @@ import { publish, subscribe } from './pubsub';
 export default function cartSubs(cart) {
   subscribe('CART: ADD', cart.add);
   subscribe('CART: REMOVE', cart.remove);
-  subscribe('CART: GET', () => {
-    publish('CART: GET - SUCCESS', cart.getItems);
+  subscribe('CART: GET', (filter) => {
+    publish('CART: GET - SUCCESS', cart.getItems(filter));
   });
   subscribe('CART: EMPTY', cart.empty);
   subscribe('CART: SETQUANTITY', cart.setQuantity)

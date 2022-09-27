@@ -30,7 +30,7 @@ function ProductList({ cart }) {
               key={product.id}
               product={product}
               addToCart={() =>
-                publish('ROUTINE: ADD TO CART', { id: product.id, increment: 1 })
+                publish('ROUTINE: ADD TO CART', { id: product.id })
               }
             />
           ))}

@@ -13,7 +13,7 @@ const controller = function(model) {
 
   async function setField(id, field, newValue) {
     const item = model.find(item => item.id === id);
-    if (!item[field]) throw new Error('Field does\'t exist');
+    if (!item.hasOwnProperty(field)) throw new Error('Field does\'t exist');
     item[field] = newValue;
   }
 

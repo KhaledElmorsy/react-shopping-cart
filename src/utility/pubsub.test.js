@@ -32,3 +32,11 @@ it('works with async functions',  (done) => {
   subscribe('TEST', outerCallback)
   publish('TEST');
 })
+
+it('runs subscriber once if created with that option', () => {
+  let callback = jest.fn()
+  subscribe('TEST', callback, {once: true})
+  publish('TEST');
+  publish('TEST');
+  expect(callback.mock.calls.length).toBe(1);
+})

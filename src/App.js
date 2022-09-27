@@ -14,7 +14,6 @@ function App() {
     cartSubs(cartHook)
     routines.cart();
   },[])
-  
   return (
     <BrowserRouter>
       <NavBar>

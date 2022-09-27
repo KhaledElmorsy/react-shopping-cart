@@ -1,8 +1,8 @@
 const events = {};
-export function subscribe(event, callback) {
+export function subscribe(event, callback, options = {once: false}) {
   events[event] ||= {};
   const id = Object.keys(events[event]).length;
-  events[event][id] = callback;
+  events[event][id] = {callback, once: options.once};
   return { event, id }; // token
 }
 
@@ -13,7 +13,11 @@ export function unsubscribe(token) {
 export function publish(event, ...payload) {
   if (!events[event]) return;
   for (let id in events[event]) {
-    events[event][id]?.(...payload);
+    let current = events[event][id]
+    current?.callback?.(...payload);
+    if (current.once) {
+      delete events[event][id]
+    } 
   }
 }
 

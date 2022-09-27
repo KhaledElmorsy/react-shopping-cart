@@ -1,0 +1,19 @@
+.alert {
+    position: absolute;
+    padding: 10px 20px;
+    width: fit-content;
+
+    top: 70vh;
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto;
+
+    font-size: 30px;
+    background-color: cadetblue;
+    color: white;
+    
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    transition: 500ms;
+}

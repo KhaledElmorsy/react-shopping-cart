@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
-import { NavBar, Cart, ProductList , Home } from './components';
+import { NavBar, Cart, ProductList , Home, Alert } from './components';
 import { navLinkStyle } from './theme'
 import { useEffect } from 'react';
 import './App.css'
@@ -26,6 +26,7 @@ function App() {
         <Route path="/products" element={<ProductList cart={cart} />} />
         <Route path="/cart" element={<Cart cart={cart} />} />
       </Routes>
+    <Alert />
     </BrowserRouter>
   );
 }

@@ -8,7 +8,7 @@ const routines = {
     subscribe('ROUTINE: ADD TO CART', ({id}) => {
       subscribe('CHECK STOCK CHANGE: COMPLETE', ({id, newStock, err}) => {
         if (err) {
-          publish('ERROR: NONE LEFT')
+          publish('ALERT', 'None Left')
         } else {
           subscribe('CART: GET - SUCCESS', (items) => {
             if (!items.length){
@@ -50,6 +50,8 @@ const routines = {
               } else {
                 publish('CART: STEPQUANTITY', {id, increment})
               }
+            } else {
+              publish('ALERT', 'None left')
             }
           }, {once: true})
           publish('CHECK STOCK CHANGE', {id, increment: -1 * increment})

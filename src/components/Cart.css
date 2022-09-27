@@ -10,7 +10,18 @@
 
 #cart .table {
     display: grid;
-    grid-template-columns: repeat(5, 150px);
+    grid-template-columns: 200px repeat(4, 130px);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    border-bottom: 1px grey solid;
+    overflow: hidden;
+}
+
+#cart .table>* {
+    display: grid;
+    place-items: center;
+    height: 50px;
+    border-top: 1px grey solid;
 }
 
 #cart .table {
@@ -23,9 +34,22 @@
     padding: 10px;
     font-size: 24px;
     font-weight: bold;
+    border: none;
 }
 
-#cart .table .edit {
+#cart .table .edit.cell {
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 15px;
+}
+
+#cart .table .edit.cell * {
+    cursor: pointer;
+    height: fit-content;
+    user-select: none;
+}
+
+#cart .table .total.cell{
+    font-weight: bold;
 }

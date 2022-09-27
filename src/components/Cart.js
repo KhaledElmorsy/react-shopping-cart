@@ -34,15 +34,15 @@ function Cart({cart}) {
       {cartItems.map((item, i) => (
         <React.Fragment key={i}>
           <div>{item.name}</div>
-          <div>{item.price}</div>
+          <div>${item.price}</div>
           <div>{item.quantity}</div>
-          <div className="edit">
+          <div className="cell edit">
             <div onClick={() => publish('ROUTINE: INCREMENT CART', {id: item.id, increment: 1})}>+</div>
             <div onClick={() => publish('ROUTINE: INCREMENT CART', {id: item.id, increment: -1})}>-</div>
             {false ? <div className="disabled">-</div> : 
              <div onClick={() => publish('ROUTINE: REMOVE FROM CART', {id: item.id})}>x</div> }
           </div>
-          <div>{item.price * item.quantity}</div>
+          <div className='cell total'>${item.price * item.quantity}</div>
         </ React.Fragment>
         ))
       }

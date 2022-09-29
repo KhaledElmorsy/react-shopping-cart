@@ -1,12 +1,13 @@
 import React from 'react'
 import controller from '../model/controller'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
+import CartContext from '../CartContext'
 import './Cart.css'
 import { publish } from '../utility/pubsub'
 
-function Cart({cart}) {
+function Cart() {
   const [cartItems, setCartItems] = useState([])
-  
+  const cart = useContext(CartContext)
   useEffect(()=>{
     (async()=>{
       const relevantItems = await controller.getFiltered((data) => 

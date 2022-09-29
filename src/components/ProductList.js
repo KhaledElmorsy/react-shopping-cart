@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 import './ProductList.css';
 import Product from './Product';
-import SideCart from './SideCart';
 import controller from '../model/controller';
 import { subscribe, publish, unsubscribe } from '../utility/pubsub';
 
-function ProductList({ cart }) {
+function ProductList() {
   const [products, setProducts] = useState([]);
   const [update, setUpdate] = useState(false);
 
@@ -21,6 +20,7 @@ function ProductList({ cart }) {
       setProducts(await controller.getAll());
     })();
   }, [update]);
+  
   return (
     <div id="product-list">
       <div id="grid-container">
